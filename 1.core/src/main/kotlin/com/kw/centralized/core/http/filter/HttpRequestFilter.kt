@@ -13,7 +13,7 @@ import java.util.UUID
 
 @Component
 class HttpRequestFilter : OncePerRequestFilter() {
-    @Value("\${starter.application-code:APP}")
+    @Value("\${centralized-core.application-code:APP}")
     private val applicationCode: String = "APP"
 
     override fun doFilterInternal(

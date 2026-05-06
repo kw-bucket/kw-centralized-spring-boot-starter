@@ -20,7 +20,7 @@ import tools.jackson.databind.exc.InvalidFormatException
 class AppControllerAdvice {
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
-    @Value("\${starter.application-code:APP}")
+    @Value("\${centralized-core.application-code:APP}")
     private val applicationCode: String = "APP"
 
     @ExceptionHandler(Exception::class)

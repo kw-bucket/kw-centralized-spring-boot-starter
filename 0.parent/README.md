@@ -19,7 +19,7 @@ To use this parent in your Spring Boot project, add the following to your `pom.x
 
 ```xml
 <parent>
-    <groupId>com.kw-bucket</groupId>
+    <groupId>com.kw</groupId>
     <artifactId>kw-centralized-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <relativePath>../0.parent/pom.xml</relativePath> <!-- Adjust if used as a remote parent -->

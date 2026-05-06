@@ -20,19 +20,19 @@ import java.util.concurrent.TimeUnit
 class RestClientConfig {
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
-    @Value("\${starter.http-client.connection.connect-timeout-seconds:30}")
+    @Value("\${centralized-core.http-client.connection.connect-timeout-seconds:30}")
     private val connectTimeoutSeconds: Long = 30
 
-    @Value("\${starter.http-client.request.connection-request-timeout-seconds:30}")
+    @Value("\${centralized-core.http-client.request.connection-request-timeout-seconds:30}")
     private val connectionRequestTimeoutSeconds: Long = 30
 
-    @Value("\${starter.http-client.request.response-timeout-seconds:30}")
+    @Value("\${centralized-core.http-client.request.response-timeout-seconds:30}")
     private val responseTimeoutSeconds: Long = 60
 
-    @Value("\${starter.http-client.pooling.connection-limit:3000}")
+    @Value("\${centralized-core.http-client.pooling.connection-limit:3000}")
     private val connectionLimit: Int = 3000
 
-    @Value("\${starter.http-client.pooling.max-connection-per-route:3000}")
+    @Value("\${centralized-core.http-client.pooling.max-connection-per-route:3000}")
     private val maxConnectionPerRoute: Int = 3000
 
     @Bean

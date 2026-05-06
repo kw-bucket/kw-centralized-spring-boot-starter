@@ -17,13 +17,13 @@ import tools.jackson.module.kotlin.jsonMapper
 class SecureEndpointInterceptor(
     private val httpLoggingService: HttpLoggingService,
 ) : HandlerInterceptor {
-    @Value("\${starter.application-code:APP}")
+    @Value("\${centralized-core.application-code:APP}")
     private val applicationCode: String = "APP"
 
-    @Value("\${starter.api.auth.enabled:false}")
+    @Value("\${centralized-core.api.auth.enabled:false}")
     private val apiAuthEnabled: Boolean = false
 
-    @Value("\${starter.api.auth.key:DEFAULT-AUTH-KEY}")
+    @Value("\${centralized-core.api.auth.key:DEFAULT-AUTH-KEY}")
     private val apiAuthKey: String = "DEFAULT-AUTH-KEY"
 
     override fun preHandle(

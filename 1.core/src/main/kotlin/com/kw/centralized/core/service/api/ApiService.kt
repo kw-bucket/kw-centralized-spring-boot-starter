@@ -33,10 +33,10 @@ open class ApiService(
             .enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
             .build()
 
-    @Value("\${starter.api.logging.enabled:true}")
+    @Value("\${centralized-core.api.logging.enabled:true}")
     private val isLogEnabled: Boolean = true
 
-    @Value("\${starter.api.logging.body-length:100}")
+    @Value("\${centralized-core.api.logging.body-length:100}")
     private val strLogLength: Int = 100
 
     fun <T : Any> execute(
