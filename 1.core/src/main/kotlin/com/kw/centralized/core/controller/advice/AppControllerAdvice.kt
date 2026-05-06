@@ -27,7 +27,7 @@ class AppControllerAdvice {
     fun handleException(ex: Exception): ResponseEntity<ApiOutput<Nothing>> =
         buildResponse(
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR,
-            status = ExceptionStatus.E5000,
+            status = ExceptionStatus.E_500_0,
             description = ex.message,
         ).also {
             logger.error("Exception: {}", ex.stackTraceToString())
@@ -37,7 +37,7 @@ class AppControllerAdvice {
     fun handleIllegalArgument(ex: IllegalArgumentException) =
         buildResponse(
             httpStatus = HttpStatus.BAD_REQUEST,
-            status = ExceptionStatus.E4000,
+            status = ExceptionStatus.E_400_0,
             description = ex.message,
         )
 
@@ -45,7 +45,7 @@ class AppControllerAdvice {
     fun handleIllegalState(ex: IllegalStateException) =
         buildResponse(
             httpStatus = HttpStatus.CONFLICT,
-            status = ExceptionStatus.E4090,
+            status = ExceptionStatus.E_409_0,
             description = ex.message,
         )
 
@@ -54,7 +54,7 @@ class AppControllerAdvice {
     fun handleConstraintsFailure(ex: MethodArgumentNotValidException) =
         buildResponse(
             httpStatus = HttpStatus.BAD_REQUEST,
-            status = ExceptionStatus.E4000,
+            status = ExceptionStatus.E_400_0,
             description =
                 ex.bindingResult.fieldErrors.takeIf { it.isNotEmpty() }?.joinToString { error ->
                     val reason =
@@ -75,7 +75,7 @@ class AppControllerAdvice {
     fun handleMismatchedMethodArgument(ex: MethodArgumentTypeMismatchException) =
         buildResponse(
             httpStatus = HttpStatus.BAD_REQUEST,
-            status = ExceptionStatus.E4000,
+            status = ExceptionStatus.E_400_0,
             description = "'${ex.name}' should be a valid '${ex.requiredType?.simpleName}' but '${ex.value}' is not!",
         ).also {
             logger.error("Handle MethodArgumentTypeMismatchException: {}", ex.message)
@@ -85,7 +85,7 @@ class AppControllerAdvice {
     fun handleMissingRequestParam(ex: MissingServletRequestParameterException) =
         buildResponse(
             httpStatus = HttpStatus.BAD_REQUEST,
-            status = ExceptionStatus.E4000,
+            status = ExceptionStatus.E_400_0,
             description =
                 "Required request parameter '${ex.parameterName}' for type ${ex.parameterType} is not present!",
         ).also {
@@ -102,7 +102,7 @@ class AppControllerAdvice {
 
         return buildResponse(
             httpStatus = HttpStatus.BAD_REQUEST,
-            status = ExceptionStatus.E4000,
+            status = ExceptionStatus.E_400_0,
             description = description,
         ).also {
             logger.error("Handler HttpMessageNotReadableException: {}", ex.message)
@@ -142,7 +142,7 @@ private enum class ExceptionStatus(
     override val message: String,
     override val description: String,
 ) : ApiOutputStatus {
-    E4000("4000", "Bad Request", "Bad Request"),
-    E4090("4090", "Conflict", "Conflict"),
-    E5000("5000", "Internal Server Error", "Internal Server Error"),
+    E_400_0("_400_0", "Bad Request", "Bad Request"),
+    E_409_0("_409_0", "Conflict", "Conflict"),
+    E_500_0("_500_0", "Internal Server Error", "Internal Server Error"),
 }

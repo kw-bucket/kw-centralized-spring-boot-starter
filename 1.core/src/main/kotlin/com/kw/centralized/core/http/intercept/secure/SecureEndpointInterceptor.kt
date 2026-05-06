@@ -54,7 +54,7 @@ class SecureEndpointInterceptor(
         with(response.writer) {
             val o: ApiOutput<Nothing> =
                 ApiOutput.Companion.fromCustomStatus(
-                    code = "${applicationCode}4010",
+                    code = "${applicationCode}_401_0",
                     message = "Unauthorized",
                     description = "Please recheck authentication key!",
                 )
